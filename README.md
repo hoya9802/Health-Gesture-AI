@@ -22,7 +22,7 @@ project/
 └── train_model.ipynb   # Gesture data를 수집 + DL 모델 학습 파일
 ```
 
-## 데이터 수집
+## Data Collection
  - 제스처 인식을 하기 위한 손바닥의 관절 좌표 데이터가 필요
  - 운동 자세를 체크하기 위한 전신 관절 좌표 데이터가 필요
  - 데이터를 수집하기 위한 Webcam 필요
@@ -104,3 +104,36 @@ project/
 
 <img src="https://github.com/user-attachments/assets/87a865be-ed40-4d76-a877-c19a94605ee5" alt="image" width="50%">
 
+#### Activation Function
+Gradient Vanishing Issue을 해결하고, 데이터에는 음수의 데이터가 들어가지 않기 때문에 Relu를 사용
+
+## Model Performance
+
+| Error Metric    | LSTM | RNN |
+|-----------------|---------|---------|
+| **Accuracy** | 96.13%   | 97.22%   |
+| **Loss** | 0.09998    | 0.06373    |
+
+두 모델의 큰 성능 차이는 없었지만 데이터 수가 적고 Sequence의 길이 또한 짧아서 연산이 상대적으로 복잡한 LSTM보다 RNN에서 1%정도 향상된 결과를 얻을 수 있었습니다.
+
+## Final Result
+
+![final result (1) (1)](https://github.com/user-attachments/assets/7ac1489c-e3d0-4ebb-8763-a701bc3a2515)
+
+## Conclusion
+
+### 문제점
+
+ - Gesture를 분류하는 종류와 데이터 수가 적어, 주먹을 쥐는 동작의 개수를 5개 늘려주는 Gesture이지만 그냥 주먹을 쥐고 있는 경우에 대한 학습이 없어 마찬가지로 5개를 늘려주는 경향이 있음
+ - Squat에 경우 무릎만 보지 않고 허리, 목 등 여러 요인들도 작용하지만 이번에는 무릎 사이각으로만 모델 구현
+
+### 기대 효과
+
+ - Gesture 인식을 통한 수화 번역기를 만들어 귀가 들리지 않는 사람과에 소통이 가능해 질것입니다.
+ - 앞으로 키보드나 마우스가 없어도 Gesture를 통한 즉각적인 화면과 상호작용을 통해 원하는 것을 보고 쓸 수 있을 것이다.
+ - 4차 산업 중 하나인 VR, AR에서 지금은 손에 기구를 잡고 하지만 앞으로는 카메라만 앞에 설치하면 VR속에서 보다 더 현실감을 느낄 수 있을 것이다.
+
+## Reference
+ - https://arxiv.org/pdf/1712.10136v1.pdf
+ - https://google.github.io/mediapipe/solutions/holistic.html
+ - https://www.crocus.co.kr/1635
